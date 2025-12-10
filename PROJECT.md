@@ -1,0 +1,30 @@
+```bash
+lib/
+  main.dart
+  core/
+    errors/
+    utils/
+    theme/
+    widgets/
+  features/
+    auth/
+      presentation/
+      application/
+      domain/
+      data/
+    alerts/
+      presentation/
+      application/
+      domain/
+      data/
+    map/
+      presentation/
+      application/
+      domain/
+      data/
+  services/
+    location_service.dart
+    notification_service.dart
+    connectivity_service.dart
+
+```
