@@ -1,16 +1,10 @@
-# saferoute
+## SafeRoute
 
-A new Flutter project.
+SafeRoute is a Flutter mobile app that helps people move through cities more safely. It combines a safety-focused map with community-sourced hazard reports, real-time alerts, and an at-a-glance safety score to guide your next route.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Highlights
+- Safety-first map with surface that adapts to light/dark modes
+- Community hazard alerts to spot accidents, road issues, or risky areas early
+- Safety score summary plus quick stats for alerts and weather
+- Quick start navigation entry point (routes view planned)
+- Secure sign-in with email/password, Google, and Apple backed by a custom auth service
