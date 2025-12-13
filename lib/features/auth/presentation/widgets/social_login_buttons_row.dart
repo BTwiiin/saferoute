@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:saferoute/core/widgets/app_snackbar.dart';
 import 'package:saferoute/features/auth/presentation/providers/auth_providers.dart';
-import 'package:saferoute/main_page.dart';
+import 'package:saferoute/core/main_page.dart';
 import 'package:saferoute/l10n/app_localizations.dart';
 
 class SocialLoginButtonsRow extends ConsumerWidget {
@@ -39,7 +39,7 @@ class SocialLoginButtonsRow extends ConsumerWidget {
         if (!context.mounted) return;
 
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const SafeRouteHomePage()),
+          MaterialPageRoute(builder: (_) => const HomePage()),
           (route) => false,
         );
       } on GoogleSignInException catch (e) {
@@ -91,6 +91,9 @@ class _SocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final surface = colorScheme.surface.withOpacity(theme.brightness == Brightness.dark ? 0.85 : 1);
+    final outline = colorScheme.onSurface.withOpacity(0.12);
+
     return InkWell(
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
@@ -98,13 +101,22 @@ class _SocialButton extends StatelessWidget {
         width: 80,
         height: 60,
         decoration: BoxDecoration(
-          color: colorScheme.surface,
+          color: surface,
+          border: Border.all(color: outline),
           borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            if (theme.brightness == Brightness.light)
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+          ],
         ),
         child: Icon(
           icon,
           size: 32,
-          color: colorScheme.primary,
+          color: colorScheme.onSurface,
         ),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   // ============== DESIGN TOKENS ==============
 
-  // Main brand colors (from your table)
+  // Main brand colors (from Winter Chill palette)
   static const Color primary = Color(0xFF0B2E33); // deep teal
   static const Color primaryVariant = Color(0xFF4F7C82); // muted teal
   static const Color accent = Color(0xFFB8E3E9); // light icy blue
@@ -12,7 +12,7 @@ class AppTheme {
   static const Color backgroundLight = Color(0xFFF7FBFD); // soft almost-white
   static const Color backgroundLightBottom = Color(0xFFE4F3F6);
 
-  // Cards / inputs
+  // Cards / inputs (light)
   static const Color cardBgLight = Color(0xFFFFFFFF);
 
   // Disabled
@@ -27,26 +27,35 @@ class AppTheme {
   static const Color errorColor = Color(0xFFD95C5C);
   static const Color errorBorderColor = Color(0xFFD95C5C);
 
-  // Borders & dividers
+  // Borders & dividers (light)
   static const Color inputBorderLight = Color(0xFF93B1B5);
   static const Color dividerLight = Color(0xFFDCE7EB);
 
-  // Dark theme approximations
+  // ---------- DARK PALETTE ----------
+
   static const Color backgroundDarkTop = Color(0xFF0B2E33);
-  static const Color backgroundDarkBottom = Color(0xFF0B4A54);
-  static const Color cardBgDark = Color(0xFFB8E3E9);
+  static const Color backgroundDarkBottom = Color(0xFF07191C); // deeper bottom
+
+  // Surfaces / cards on dark
+  static const Color cardBgDark = Color(0xFF102B31); // for cards/panels
+  static const Color surfaceAltDark = Color(0xFF0E3A42); // optional secondary surface
+
+  // Inputs on dark: keep them light icy (like your screenshots)
+  static const Color inputFillDark = accent; // 0xFFB8E3E9
+
   static const Color textMainDark = Color(0xFFF7FBFD);
-  static const Color textSecondaryDark = Color(0xFFB8E3E9);
-  static const Color textPlaceholderDark = Color(0xFF93B1B5);
+  static const Color textSecondaryDark = Color(0xFF93B1B5);
+  static const Color textPlaceholderDark = Color(0xFF4F7C82);
+
   static const Color inputBorderDark = Color(0xFF93B1B5);
-  static const Color dividerDark = Colors.white24;
+  static const Color dividerDark = Color(0xFF24454B);
 
   // Common
   static const double fieldRadiusValue = 16;
   static final BorderRadius fieldRadius =
       BorderRadius.circular(fieldRadiusValue);
 
-  // ============== BACKGROUND GRADIENTS ==============@
+  // ============== BACKGROUND GRADIENTS ==============
 
   static const LinearGradient lightBackgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
@@ -121,10 +130,10 @@ class AppTheme {
   static final InputDecorationTheme darkInputDecorationTheme =
       InputDecorationTheme(
     filled: true,
-    fillColor: accent, // light cyan inputs on dark bg
-    hintStyle: const TextStyle(color: backgroundDarkTop),
-    labelStyle: const TextStyle(color: backgroundDarkTop),
-    floatingLabelStyle: const TextStyle(color: backgroundDarkBottom),
+    fillColor: inputFillDark, // light cyan inputs on dark bg
+    hintStyle: const TextStyle(color: textPlaceholderDark),
+    labelStyle: const TextStyle(color: textSecondaryDark),
+    floatingLabelStyle: const TextStyle(color: textMainDark),
     errorStyle: const TextStyle(
       color: errorColor,
       fontSize: 12,
@@ -189,32 +198,31 @@ class AppTheme {
   );
 
   static final TextButtonThemeData lightTextButtonTheme = TextButtonThemeData(
-  style: TextButton.styleFrom(
-    foregroundColor: primary,
-    textStyle: const TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
+    style: TextButton.styleFrom(
+      foregroundColor: primary,
+      textStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+      ),
     ),
-  ),
-);
+  );
 
-static final TextButtonThemeData darkTextButtonTheme = TextButtonThemeData(
-  style: TextButton.styleFrom(
-    foregroundColor: textMainDark,
-    textStyle: const TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
+  static final TextButtonThemeData darkTextButtonTheme = TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: textSecondaryDark,
+      textStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+      ),
     ),
-  ),
-);
-
+  );
 
   // ============== THEMES ==============
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors
-        .transparent, // we’ll paint gradient ourselves in pages
+    scaffoldBackgroundColor:
+        Colors.transparent, // gradient is painted in pages
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: primary,
@@ -262,7 +270,7 @@ static final TextButtonThemeData darkTextButtonTheme = TextButtonThemeData(
       onError: Colors.white,
       background: backgroundDarkTop,
       onBackground: textMainDark,
-      surface: cardBgDark,
+      surface: cardBgDark, // dark cards / panels
       onSurface: textMainDark,
     ),
     textTheme: const TextTheme(
